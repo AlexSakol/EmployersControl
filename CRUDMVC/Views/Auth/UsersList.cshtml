@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Список пользователей";
+}
+
+<h2>Список пользователей</h2>
+<table class="table table-striped">
+    <tr><th>Логин</th><th>Роль</th><th></th><th></th></tr>
+    @foreach (var user in ViewBag.Users)
+    {
+        <tr>
+            <td>@user.Login</td>
+            <td>@user.Role</td>
+            @if(user.Login != User.Identity.Name)
+            {
+            <td>
+                @if (user.Role != "Admin")
+                {
+                    <form asp-controller="Auth" asp-action="SetAdmin" asp-antiforgery="true" asp-route-id="@user.Id">
+                        <input class="btn btn-outline-primary" type="submit" value="Назначить администратором">
+                    </form>
+                }
+                else
+                {
+                    <form asp-controller="Auth" asp-action="UnsetAdmin" asp-antiforgery="true" asp-route-id="@user.Id">
+                        <input class="btn btn-outline-primary" type="submit" value="Лишить прав администратора">
+                    </form>
+                }
+            </td>
+            <td>                
+                <form asp-controller="Auth" asp-action="DeleteUser" asp-antiforgery="true" asp-route-id="@user.Id">
+                    <input class="btn btn-outline-danger" type="submit" value="Удалить">
+                </form>
+            </td>
+            }
+        </tr>
+    }
+</table>
+<a class="btn btn-primary" asp-action="Register" asp-controller="Auth">Зарегистрировать пользователя</a>

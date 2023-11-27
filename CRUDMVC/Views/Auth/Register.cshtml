@@ -1,0 +1,20 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+
+<div class="container">
+    <form method="post" asp-controller="Auth" asp-action="AddUser" asp-antiforgery="true">
+        <div class="form-group mt-3">
+            <input class="form-control" asp-for="Login" placeholder="Введите логин">
+            <span asp-validation-for="Login"></span>
+        </div>
+        <div class="form-group mt-3">
+            <input class="form-control" asp-for="Password" placeholder="Введите пароль">
+            <span asp-validation-for="Password"></span>
+        </div>        
+        <input class="btn btn-success mt-3" type="submit" value="Зарегистрировать">
+    </form>
+</div>

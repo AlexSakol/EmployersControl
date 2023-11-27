@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Работники";
+}
+
+<h2>Список работников</h2>
+<table class="table table-striped">
+    <tr><th>Имя</th><th>Должность</th><th>Зарплата</th><th>Отдел</th><th></th><th></th></tr>
+@foreach(var employer in ViewBag.Items)
+{
+    <tr>
+        <td>@employer.Name</td>
+        <td>@employer.Post</td>
+        <td>@employer.Salary</td>
+            <td>@employer.DepartmentName</td>
+        <td><a class="btn btn-outline-info" asp-controller="Home" asp-action="Edit" asp-route-id="@employer.Id">Редактировать</a></td>
+        <td>
+                <form asp-controller="Home" asp-action="Remove" asp-antiforgery="true" asp-route-id="@employer.Id">
+                <input class="btn btn-outline-danger" type="submit" value="Удалить">
+            </form>
+        </td>
+    </tr>
+}
+</table>
+
+<a class="btn btn-primary" asp-controller="Home" asp-action="Add">Добавить</a>

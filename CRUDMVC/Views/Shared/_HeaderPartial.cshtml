@@ -1,0 +1,36 @@
+﻿<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a asp-controller="Home" asp-action="Index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <span class="fs-4">Главная</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="EmployerList">Список работников</a>
+                </li>                
+            }
+            @if (User.IsInRole("Admin")) {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Auth" asp-action="UsersList">Пользователи</a>
+            </li>
+            }
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item ms-3">
+                    <a class="nav-link" asp-controller="Auth" asp-action="Login">Войти</a>
+                </li>
+            }
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item ms-3">
+                    <a class="nav-link" asp-controller="Auth" asp-action="ChangePassword">Сменить пароль</a>
+                </li>
+                <li class="nav-item ms-3">
+                    <a class="nav-link" asp-controller="Auth" asp-action="Logout">Выйти</a>
+                </li>
+            }
+        </ul>
+    </header>
+</div>

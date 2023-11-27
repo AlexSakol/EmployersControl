@@ -1,0 +1,27 @@
+﻿@model Employer
+
+@{
+    ViewData["Title"] = "Редактировать";
+}
+
+<h3>Редактировать сотрудника</h3>
+
+<form method="post" asp-controller="Home" asp-action="Edit" asp-antiforgery="true" asp-route-id="@Model.Id">
+    <div class="form-group mt-3">
+        <input class="form-control" asp-for="Name" placeholder="Введите имя" value="@Model.Name">
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group mt-3">
+        <input class="form-control" asp-for="Post" placeholder="Введите должность" value="@Model.Post">
+        <span asp-validation-for="Post"></span>
+    </div>
+    <div class="form-group mt-3">
+        <input class="form-control" asp-for="Salary" placeholder="Введите зарплату" value="@Model.Salary">
+        <span asp-validation-for="Salary"></span>
+    </div>
+    <div class="form-group mt-3 mb-3">
+        <select class="form-select" asp-items="@ViewBag.Departments" asp-for="DepartmentId"></select>
+    </div>
+    <input class="btn btn-success" type="submit" value="Редактировать">
+</form>
+
