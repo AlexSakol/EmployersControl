@@ -125,13 +125,14 @@ namespace CRUDMVC.Controllers
         public async Task<IActionResult> NewPassword(User user)
         {
             string? password = Hasher.GetSha256Hash(user.Password);
+            string? newPassword = Hasher.GetSha256Hash(user.NewPassword);
             if (User.Identity.Name == user.Login)
             {
                 User? foundUser = await context.Users.FirstOrDefaultAsync(
                     u => u.Login == user.Login && u.Password == password);
                 if (foundUser != null)
                 {
-                    foundUser.Password = Hasher.GetSha256Hash(Request.Form["newPassword"].ToString());
+                    foundUser.Password = newPassword;
                     context.Users.Update(foundUser);
                     await context.SaveChangesAsync();
                     Response.Cookies.Delete("Token");

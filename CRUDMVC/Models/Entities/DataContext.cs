@@ -38,6 +38,7 @@ namespace CRUDMVC.Models.Entities
             modelBuilder.Entity<Department>().HasData(departments);
             modelBuilder.Entity<Employer>().HasData(employers);
             modelBuilder.Entity<Role>().HasData(roles);
+            modelBuilder.Entity<User>().Ignore(u => u.NewPassword);
             modelBuilder.Entity<User>().HasIndex(u => u.Login).IsUnique();
             modelBuilder.Entity<User>().HasData(users);
         }       
