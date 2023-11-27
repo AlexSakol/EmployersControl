@@ -17,8 +17,7 @@ namespace CRUDMVC.Models.Entities
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,50}$", ErrorMessage = "Пароль должен содержать только латиницу, хотя бы одну цифру, хотя бы одну заглавную букву, хотя бы один спецсимвол, длина от 8 до 50 символов")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        //[Required(ErrorMessage = "Пароль не указан")]
+        
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,50}$", ErrorMessage = "Пароль должен содержать только латиницу, хотя бы одну цифру, хотя бы одну заглавную букву, хотя бы один спецсимвол, длина от 8 до 50 символов")]
         [DataType(DataType.Password)]
         public string? NewPassword { get; set; }
